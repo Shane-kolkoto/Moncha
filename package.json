@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon",
-    "test": "(dropdb --if-exists test-cjs-web-store && createdb test-cjs-web-store) && NODE_ENV=test mocha"
+    "test": "(dropdb --if-exists web_store && createdb web_store) && NODE_ENV=test mocha"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
