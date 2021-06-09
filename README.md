@@ -1,7 +1,21 @@
 # Moncha
 
-# CRUD Stickers
+## CRUD Stickers
+    - Look in server folder to get database layout
 
-## ERD
+## Install dependencies
+    - npm i / npm install
+    - yarn install
 
-![](https://lucid.app/publicSegments/view/98a6dc28-e902-47de-9ecd-e854cd5b663a/image.png)
+## Create .env 
+    - look at .env.example file
+
+## Run database
+    - npx knex migrate:latest
+    - npx knex seed:run
+
+## Start program
+    - npm run start ( run bin file )
+    - npm run dev ( run nodemon)
+    -npm run test ( test the database )
+

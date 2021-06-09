@@ -7,27 +7,28 @@ const app = require('../app');
 const fixtures = require('./fixtures');
 
 describe('CRUD Stickers', () => {
-  before((done) => {
+  it('is created empty', () => {
     knex.migrate.latest()
       .then(() => {
         return knex.seed.run();
       }).then(() => done());
   });
 
-  it('Lists all Records', (done) => {
+  it('Lists all Records', () => {
     request(app)
       .get('/api/v1/stickers')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
       .then((response) => {
+        
         expect(response.body).to.be.a('array');
         expect(response.body).to.deep.equal(fixtures.stickers);
         done();
       });
   });
 
-  it('Show one record by id', (done) => {
+  it('Show one record by id', () => {
     request(app)
       .get('/api/v1/stickers/1')
       .set('Accept', 'application/json')
@@ -40,7 +41,7 @@ describe('CRUD Stickers', () => {
       });
   });
 
-  it('Show one record by id', (done) => {
+  it('Show one record by id', () => {
     request(app)
       .get('/api/v1/stickers/5')
       .set('Accept', 'application/json')
@@ -49,11 +50,11 @@ describe('CRUD Stickers', () => {
       .then((response) => {
         expect(response.body).to.be.a('object');
         expect(response.body).to.deep.equal(fixtures.stickers[4]);
-        done();
+
       });
   });
 
-  it('Creates a record', (done) => {
+  it('Creates a record', () => {
     request(app)
       .post('/api/v1/stickers')
       .send(fixtures.sticker)
@@ -64,11 +65,11 @@ describe('CRUD Stickers', () => {
         expect(response.body).to.be.a('object');
         fixtures.sticker.id = response.body.id;
         expect(response.body).to.deep.equal(fixtures.sticker);
-        done();
+
       });
   });
 
-  it('Updates a record', (done) => {
+  it('Updates a record', () => {
     fixtures.sticker.rating = 5;
     request(app)
       .put('/api/v1/stickers/10')
@@ -79,11 +80,10 @@ describe('CRUD Stickers', () => {
       .then((response) => {
         expect(response.body).to.be.a('object');
         expect(response.body).to.deep.equal(fixtures.sticker);
-        done();
       });
   });
 
-  it('Deletes a record', (done) => {
+  it('Deletes a record', () => {
     request(app)
       .delete('/api/v1/stickers/10')
       .set('Accept', 'application/json')

@@ -5,11 +5,13 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon",
-    "test": "(dropdb --if-exists web_store && createdb web_store) && NODE_ENV=test mocha"
+    "test": "(dropdb --if-exists web-stores && createdb web-stores) && NODE_ENV=test mocha  --timeout 10000",
+    "jest": "jest --watchAll --verbose --timeout 10000"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.4",
+    "cross-env": "^7.0.3",
     "debug": "~2.6.9",
     "dotenv": "^10.0.0",
     "express": "~4.16.1",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
+    "jest": "^27.0.4",
     "mocha": "^9.0.0",
     "nodemon": "^2.0.7",
     "supertest": "^6.1.3"
